@@ -199,14 +199,21 @@ export const getFollowingPosts = async (req, res) => {
 
         const feedPosts = await Post.find({user : {$in : following}})
         .sort({ createdAt: -1})
-        .popuplate({
-           path: "user",
-            select: "-password"
+        .populate({
+            path: "user",
+            select: "-password",
         })
-        .popuplate({
-            path: "comment.user",
-            select: "-password"
-        })
+        .populate({
+            path: "comments.user",
+            select: "-password",
+        });
+
+        if (feedPosts.length === 0) {
+            return res.status(200).json([]);
+        }
+        
+        res.status(200).json(feedPosts);
+
     } catch (error) {
         res.status(500).json({error: error.message});
         console.log("Error in updateUser" , error.message);

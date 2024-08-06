@@ -34,7 +34,7 @@ const Sidebar = () => {
 		}
 	})
 
-	const {data} = useQuery({queryKey : ["authUser"]})
+	const {data} = useQuery({queryKey : ["authUser"] })
 	// const data = {
 	// 	fullName: "John Doe",
 	// 	username: "johndoe",
