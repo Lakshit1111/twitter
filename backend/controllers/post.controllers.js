@@ -166,7 +166,7 @@ export const allPost = async (req , res) => {
             return res.status(400).json({message : "User is not Valid"});
 
         }
-        const posts = await Post.find({ user: userId }).sort({ createdAt: -1 })
+        const posts = await Post.find().sort({ createdAt: -1 })
                 .populate({
                 	path: "user",
                 	select: "-password",

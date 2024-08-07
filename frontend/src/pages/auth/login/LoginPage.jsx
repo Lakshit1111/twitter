@@ -43,8 +43,8 @@ const LoginPage = () => {
 		} , 
 		onSuccess: () => {
 			// refetch the authUser
-			// queryClient.invalidateQueries({queryKey:["authUser"]})
-			queryClient.resetQueries({queryKey:["authUser"]})
+			queryClient.invalidateQueries({queryKey:["authUser"]})
+			// queryClient.resetQueries({queryKey:["authUser"]})
 		}
 	})
 

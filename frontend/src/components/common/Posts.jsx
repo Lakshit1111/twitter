@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const Posts = ({ feedType }) => {
 
+
 	const getEndPoint = () => {
 		switch(feedType) {
 			case "forYou":
@@ -25,6 +26,7 @@ const Posts = ({ feedType }) => {
 				const res = await fetch(Endpoint);
 
 				const data  = await res.json();
+				if(data.error) return null;
 
 				if(!res.ok) throw new Error(data.error || "Something went wrong");
 				
@@ -53,7 +55,7 @@ const Posts = ({ feedType }) => {
 				<div>
 					{posts.map((post) => (
 						
-						<Post key={post._id} post={post} />
+						<Post key={post._id} post={post} refetchPosts={refetch}/>
 					))}
 				</div>
 			)}
