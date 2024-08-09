@@ -68,11 +68,6 @@ const Post = ({ post  , refetchPosts }) => {
 		}
 	})
 
-
-
-
-
-
 	const isLiked = false;
 
 	const isMyPost = authUser._id === postOwner._id;

@@ -15,8 +15,8 @@ dotenv.config();
 
 cloudinary.config({
     cloud_name : process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secrect: process.env.CLOUDINARY_API_SECRET,
+    api_key: process.env.CLOUDINARY_CLOUD_API,
+    api_secret: process.env.CLOUDINARY_CLOUD_SECRET,
 })
 
 
@@ -26,7 +26,8 @@ const PORT = process.env.PORT ||5000;
 
 app.use(cors())
 
-app.use(express.json()); // to prase body
+app.use(express.json({limit : "5mb"})); // to prase body
+// limit should not be large to prevent ddos attack.
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
