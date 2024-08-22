@@ -40,7 +40,7 @@ const Post = ({ post  , refetchPosts }) => {
 		}
 	})
 
-	const {mutate:postComment , isCommenting} = useMutation({
+	const {mutate:postComment , isPending:isCommenting} = useMutation({
 		mutationFn : async(text) => {
 			try {
 	
@@ -64,7 +64,7 @@ const Post = ({ post  , refetchPosts }) => {
 		},
 		onSuccess : () => {
 			toast.success("Successfully");
-			// queryClient.resetQueries({ queryKey: ["authUser"] });
+			queryClient.resetQueries({ queryKey: ["post"] });
 		}
 	})
 
